@@ -1,4 +1,5 @@
-FROM python
+FROM tensorflow/tensorflow:nightly-py3-jupyter
+
 
 WORKDIR /app
 

@@ -8,35 +8,33 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 #from flask_cors import CORS
 from flask_cors import CORS, cross_origin
  
-
-chatbotEn = ChatBot('Amal-EN')
-
+try:
+    chatbotEn = ChatBot('Amal-EN')
 # Create a new trainer for the chatbot
-trainer_EN = ChatterBotCorpusTrainer(chatbotEn)
+    trainer_EN = ChatterBotCorpusTrainer(chatbotEn)
 
 # Train the chatbot based on the english corpus
 #trainer.train("chatterbot.corpus.english")
-trainer_EN.train(
+    trainer_EN.train(
         "chatterbot.corpus.english.covid19"
 
 )
-chatbotAr = ChatBot('Amal-AR')
+    chatbotAr = ChatBot('Amal-AR')
 
 # Create a new trainer for the chatbot
-trainer_AR = ChatterBotCorpusTrainer(chatbotAr)
+    trainer_AR = ChatterBotCorpusTrainer(chatbotAr)
 
 # Train the chatbot based on the english corpus
 #trainer.train("chatterbot.corpus.english")
-trainer_AR.train(
+    trainer_AR.train(
         "chatterbot.corpus.arabic.covid19"
 
-)
-  
-app = Flask(__name__)
+    )
+    app = Flask(__name__)
 #CORS(app)
 #Cross Origin
 #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-CORS(app, headers=(
+    CORS(app, headers=(
              'x-requested-with',
              'content-type',
              'accept',
@@ -49,6 +47,9 @@ CORS(app, headers=(
              'session-id',
          ),
          supports_credentials=True)
+except Exception as e:
+     print("Error")
+ 
 
 @app.route('/')
 @cross_origin(origin='*',headers=['Content-Type', 'application/json'])
