@@ -9,18 +9,29 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from flask_cors import CORS, cross_origin
  
 
-chatbot = ChatBot('Amal')
+chatbotEn = ChatBot('Amal-EN')
 
 # Create a new trainer for the chatbot
-trainer = ChatterBotCorpusTrainer(chatbot)
+trainer_EN = ChatterBotCorpusTrainer(chatbotEn)
 
 # Train the chatbot based on the english corpus
 #trainer.train("chatterbot.corpus.english")
-trainer.train(
+trainer_EN.train(
         "chatterbot.corpus.english.covid19"
 
 )
- 
+chatbotAr = ChatBot('Amal-AR')
+
+# Create a new trainer for the chatbot
+trainer_AR = ChatterBotCorpusTrainer(chatbotAr)
+
+# Train the chatbot based on the english corpus
+#trainer.train("chatterbot.corpus.english")
+trainer_AR.train(
+        "chatterbot.corpus.arabic.covid19"
+
+)
+  
 app = Flask(__name__)
 #CORS(app)
 #Cross Origin
@@ -56,7 +67,7 @@ def ask_me_en(question):
     q5 = ["Are children at risk for the coronavirus?"]
     q6 = ["Why am I not allowed to shake hands anymore?"]
      # Get a response to an input statement
-    responses_en =chatbot.get_response(question)
+    responses_en =chatbotEn.get_response(question)
 
     response = {
         'response': (str(responses_en)).encode('utf8')
@@ -77,19 +88,9 @@ def ask_me_ar(question):
     q5 = ["Are children at risk for the coronavirus?"]
     q6 = ["Why am I not allowed to shake hands anymore?"]
  
-    chatbot = ChatBot('Amal')
-
-    # Create a new trainer for the chatbot
-    trainer = ChatterBotCorpusTrainer(chatbot)
-
-    # Train the chatbot based on the english corpus
-    #trainer.train("chatterbot.corpus.english")
-    trainer.train(
-            "chatterbot.corpus.arabic.covid19"
-
-    )
+     
    # Get a response to an input statement
-    responses_en =chatbot.get_response(question)
+    responses_en =chatbotAr.get_response(question)
 
     response = {
         'response': (str(responses_en)).encode('utf8')
