@@ -1,0 +1,11 @@
+Flask
+pandas 
+xlrd
+tensorflow
+tensorflow_hub 
+tensorflow-text
+flask_cors
+pyopenssl
+chatterbot
+chatterbot-corpus
+
